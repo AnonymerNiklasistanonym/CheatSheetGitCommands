@@ -84,6 +84,8 @@ Also you can create other branches and work on them without conflicting or doing
 
 Not only files can be merged but also branches.
 
+---
+
 You can imagine every commit as a point with a unique ID and each branch as a horizontal line on which the commits are placed.
 
 You can without problems combine the points, rename them, delete them or revert all changes to a point without any problems.
@@ -144,6 +146,28 @@ Do this with all merge conflicts (all these patterns) till there are no conflict
 
 <br>
 
+## Git Bash Vim (Command line text editor)
+
+If you work with the original Git console that came with the installer (at least on Windows) and you use a command like `merge` (and there are conflicts) or `rebase` Git will open the file to control the respective function that should be done not "outside" the console with your default text editor but with the command line editor named Vim.
+
+It probably looks and feels like it makes no sense at all when it suddenly pops up in the command line and you have never encountered or used it. But it is a very easy to use and efficient text editor as soon as you know how to edit text and save files. :smile:
+
+If you have no experience with Vim like I had when I started with Git there is a simple solution to learn how it works in about 10 to 20 minutes: [Just visit this website and do the tutorial. After this you should know the basic things about how to play or even work with vim ;)](http://www.openvim.com/)
+
+### Essential commands in vim
+
+| Command                       | Function                                 |
+| ----------------------------- | ---------------------------------------- |
+| `i`                           | Go into insert mode from the normal read mode/command mode at the start (edit the file like a normal text file) |
+| `ESC`                         | Go back into read mode/command mode      |
+| `x`                           | COMMAND-MODE: delete currently selected character (the one after the cursor) |
+| `u`                           | COMMAND-MODE: undo the last command      |
+| `CTRL` + `r`                  | COMMAND-MODE: redo the last command      |
+| `:w` (+ `filename`) + `ENTER` | COMMAND-MODE: save the file under the name `filename` or just save the file if it already exists |
+| `:q` + `ENTER`                | COMMAND-MODE: quit/close vim >> Use `:wq` + `ENTER` to save the file and close vim in one command >> Use `:q!` + `ENTER` to forcefully close vim without saving any changes. |
+
+<br>
+
 ## Helpful essential commands
 
 | Command                                  | Explanation                              |
@@ -163,7 +187,7 @@ Do this with all merge conflicts (all these patterns) till there are no conflict
 | -------------------- | ---------------------------------------- |
 | Combine/Edit commits | There is a really cool thing called `git rebase -i HASH_OF_COMMIT`. If you use this command it will reset the repository to the commit with the hash you inserted. After this you will get a text document where all the commits after this commit are listed. You can now manipulated each of these commands with changing the first character before the commit ID. Use `e` to edit the commit title/description. Use `d` to completely drop the commit as if it has never existed. If you want to combine commits add to the latest commit of the ones you want to combine a `r` to edit the text and change the part before the ID of all the following commits that you want to combine to `f`. There are many more things you can do but when you done just save and quit this file and the rebase will be started. |
 
-
+<br>
 
 ## <a name="resources"></a>Sources and resources - Learn more:
 
