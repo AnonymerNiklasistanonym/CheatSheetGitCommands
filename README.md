@@ -189,10 +189,19 @@ If you have no experience with Vim like I had when I started with Git there is a
 
 <br>
 
+## Cool things you can do
+
+| Thing                                    | Explanation                              |
+| ---------------------------------------- | ---------------------------------------- |
+| Merge two repositories without losing your commit history | If you want to merge repository2 within your current repository1 this is very simple: First open the git console in repository1. Then run the command `git remote add -f repository2 pathOrUrlofRepository2` to add the repository2 to your current repository1. Then use the command `git merge --allow-unrelated-histories repository2/master` to not only merge the repositories but also without losing your commit history from repository2 (now you only need to solve your merge conflicts). |
+
+<br>
+
 ## <a name="resources"></a>Sources and resources - Learn more:
 
 * [The official git documentation](https://git-scm.com/documentation)
 * **[Git cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf) from [GitHub](https://github.com/)**
+* **[Git quick beginners tutorial](https://learnxinyminutes.com/docs/git/) from [Learn X in Y minutes](https://learnxinyminutes.com/)**
 * [Git help search](https://help.github.com/) from [GitHub](https://github.com/)
 * [Start a new git repository](http://kbroman.org/github_tutorial/pages/init.html) from [Karl Broman](http://kbroman.org/)
 * [Contribute to someone's repository](http://kbroman.org/github_tutorial/pages/fork.html) from [Karl Broman](http://kbroman.org/)
