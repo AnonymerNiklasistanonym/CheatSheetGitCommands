@@ -191,11 +191,12 @@ If you have no experience with Vim like I had when I started with Git there is a
 
 ## Cool things you can do
 
-| Thing                                    | Explanation                              |
-| ---------------------------------------- | ---------------------------------------- |
+| Thing                                                     | Explanation                                                  |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
 | Merge two repositories without losing your commit history | If you want to merge repository2 within your current repository1 this is very simple: First open the git console in repository1. Then run the command `git remote add -f repository2 pathOrUrlofRepository2` to add the repository2 to your current repository1. Then use the command `git merge --allow-unrelated-histories repository2/master` to not only merge the repositories but also without losing your commit history from repository2 (now you only need to solve your merge conflicts). |
-| Overwrite local file with remote file    | `git fetch`, `git checkout origin/master <filepath>` |
-| Overwrite local repository with remote repository | `git fetch`, `git reset --hard origin/master` |
+| Overwrite local file with remote file                     | `git fetch`, `git checkout origin/master <filepath>`         |
+| Overwrite local repository with remote repository         | `git fetch`, `git reset --hard origin/master`                |
+| Bring your forked repository up to date                   | If you not already declared an upstream repository do this: `git remote add upstream <repo-location>`, then  `git rebase upstream/master` to *import the original repository*, now you need to check if there are any merge problems and resolve them with `git status` and at the end issue `git push origin master` |
 
 <br>
 
