@@ -186,6 +186,7 @@ If you have no experience with Vim like I had when I started with Git there is a
 | Command              | Explanation                              |
 | -------------------- | ---------------------------------------- |
 | Combine/Edit commits | There is a really cool thing called `git rebase -i HASH_OF_COMMIT`. If you use this command it will reset the repository to the commit with the hash you inserted. After this you will get a text document where all the commits after this commit are listed. You can now manipulated each of these commands with changing the first character before the commit ID. Use `e` to edit the commit title/description. Use `d` to completely drop the commit as if it has never existed. If you want to combine commits add to the latest commit of the ones you want to combine a `r` to edit the text and change the part before the ID of all the following commits that you want to combine to `f`. There are many more things you can do but when you done just save and quit this file and the rebase will be started. |
+| Remove files from your git history | Only did it ones but it worked so I save it in here for later: `git filter-branch --tree-filter 'rm -rf node_modules' HEAD` (in this case the directory `node_modules` was removed from all commits). |
 
 <br>
 
