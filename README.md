@@ -30,15 +30,15 @@ This means that it can not only track your small 1Mb personal project but also r
 
 Git is because of it's abilities to be:
 
-* secure,
+- secure,
   (example: Every commit is hashed - you can always be sure this was your commit or this was not your commit)
-* not central distributed,
+- not central distributed,
   (example: Everybody that is working on a Git project has a full backup of the whole project)
-* flexible,
+- flexible,
   (example: You or a group of contributors can just take the project, work on a feature and if you are ready push it to the master project without conflicting with the master project in the time you work on your feature)
-* performant
+- performant
   (example: There are no boundaries in contributors or contributions - everything is handled lightning fast and conflicts are corrected and calculated in milliseconds)
-* [and has even more features]
+- [and has even more features]
 
 nowadays the most widely used modern version control system in the world.
 
@@ -200,6 +200,45 @@ If you have no experience with Vim like I had when I started with Git there is a
 | Bring your forked repository up to date                   | If you not already declared an upstream repository do this: `git remote add upstream <repo-location>`, then  `git rebase upstream/master` to *import the original repository*, now you need to check if there are any merge problems and resolve them with `git status` and at the end issue `git push origin master` |
 
 <br>
+
+## GitHub - make gpg verified commits
+When using GitHub you can make double sure that nobody can impersonate you.
+GitHub does this by using signed git commits via a private gpg key.
+To use this feature do the following:
+
+1. Create a gpg key
+  1. Open `git-bash` and enter `gpg --gen-key`
+  1. Then enter `1` or `RSA and RSA (default)`
+  1. Then choose a length of 4096 bits (this means enter `4096`)
+  1. And set the expiration of the key to one year (enter `1y`)
+  1. Now enter your name and alias (or only alias)
+  1. And you GitHub email address
+  1. Accept everything by entering `o` and **entering a passphrase which you need to remember!**
+1. Exporting the public key
+  1. Enter `gpg --list-secret-keys --keyid-format LONG` to view all your created gpg keys
+  ```
+  $ gpg --list-secret-keys --keyid-format LONG
+  ---------------------------------
+  sec   4096R/42GTJI9734UHGRF1 2018-07-16 [expires: 2019-07-16]
+  uid                          John Doe (StackOverflowGuy) <john.doe@email.com>
+  ssb   4096R/7RRR865GHUI90DC2 2018-07-16
+  ```
+  1. Then copy the key ID 42GTJI9734UHGRF1 to your clipboard and enter in the console `gpg --armor --export 42GTJI9734UHGRF1` which should output something like this:
+  ```
+  -----BEGIN PGP PUBLIC KEY BLOCK-----
+  abc358309589304851924u3u940u32u423
+  xyz832847398274982374jkndsjkybfj
+  -----END PGP PUBLIC KEY BLOCK-----```
+  1. Copy this whole block to your clipboard
+1. Register the key on GitHub
+  1. Open `github.com` and login
+  1. Select your profile picture and click settings
+  1. Select [SSH and GPG keys](https://github.com/settings/keys) and click `New GPG key`
+  1. Enter the copied public key block and click `Add GPG key`
+1. Register the key to git on your computer
+  1. Simply copy again the key ID (in this case 42GTJI9734UHGRF1) and enter in the console `git config --global user.signingkey 42GTJI9734UHGRF1` to register the key to git
+1. Make a signed commit
+  1. Enter `git commit -S -m "A signed commit"` and enter your passphrase
 
 ## <a name="resources"></a>Sources and resources - Learn more:
 
