@@ -201,6 +201,49 @@ If you have no experience with Vim like I had when I started with Git there is a
 
 <br>
 
+## Git Hooks
+Git Hooks are a git feature which simply let's you run scripts before and after committing/pulling/... changes.
+This enables you for example to automate things (run code formatter) or run a checklist before a commit (run tests and if one tests is unsuccessfull dismiss the commit).
+
+### Cool links
+- https://www.atlassian.com/git/tutorials/git-hooks
+- https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
+
+### Create a hook
+Git Hooks are not being committed/synced and can be found in the `.git/hooks` directory with the file extension `*.sample`.
+To activate/use a hook simply change the contents of the hook you want to edit and if you are finished remove the `.sample` part and make the file executable with `chmod +x filename`.
+
+### Examples
+
+#### `prepare-commit-msg`
+*Prepare a git commit message template that automatically is opened after `git commit` was entered but before the commit happens with one argument (the commit message file path/name):*
+1. Go into the `.git/hooks` directory
+2. Change the content of the file `prepare-commit-msg.sample` to:
+    ```sh
+    #!/bin/sh
+    echo "# Please include a useful commit message!" > $1
+    ```
+3. Rename `prepare-commit-msg.sample` to `prepare-commit-msg`
+4. Make `prepare-commit-msg` executable by entering `chmod +x prepare-commit-msg`
+5. Enter in the console `git commit`
+6. Now in your console via vim or another text editor a file was opened in which the content of the script is written down. You can now enter your custom text (# ... is the title, everything below is the descripton of the commit) which will be used as commit message.
+
+A cool thing is that you do not even need to use shell/bash as scripting language.
+Just use any other language like for example python3:
+
+```python
+#!/usr/bin/env python3
+import sys, os
+with open(sys.argv[1], 'w') as f:
+    f.write("# Please include a useful commit message!")
+```
+
+#### `commit-msg`
+*Edit a git commit message after `git commit` was entered and after the user entered his git commit message. When the script exits non-zero (`sh`: `exit 1`, `python`: `sys.exit(1)`) the commit will be dismissed with one argument (the commit message file path/name)*
+
+#### `pre-commit`
+*Do anything before a git commit can be made like run tests to not brake your codebase with the following commit*
+
 ## GitHub - make gpg verified commits
 When using GitHub you can make double sure that nobody can impersonate you.
 GitHub does this by using signed git commits via a private gpg key.
